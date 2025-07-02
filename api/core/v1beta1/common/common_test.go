@@ -13,18 +13,21 @@ func Test_FeatureFlagSource_SyncProvider(t *testing.T) {
 	h := SyncProviderHttp
 	g := SyncProviderGrpc
 	gcs := SyncProviderGcs
+	azureBlob := SyncProviderAzureBlob
 
 	require.True(t, k.IsKubernetes())
 	require.True(t, f.IsFilepath())
 	require.True(t, h.IsHttp())
 	require.True(t, g.IsGrpc())
 	require.True(t, gcs.IsGcs())
+	require.True(t, azureBlob.IsAzureBlob())
 
 	require.False(t, f.IsKubernetes())
 	require.False(t, h.IsFilepath())
 	require.False(t, k.IsGrpc())
 	require.False(t, g.IsHttp())
 	require.False(t, g.IsGcs())
+	require.False(t, gcs.IsAzureBlob())
 }
 
 func Test_FLagSourceConfiguration_EnvVarKey(t *testing.T) {
